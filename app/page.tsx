@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable @next/next/no-img-element */
 import { Darker_Grotesque } from "next/font/google";
 import background from "../public/background.svg";
@@ -6,6 +7,7 @@ import Proposal from "./_components/proposal";
 import GoodsReport from "./_components/goods-report";
 import interfaceLogo from "../public/interface.png";
 import { SapLogo, AmazonLogo, UnfiLogo } from "./_components/amzon-logo";
+import { LinkedinSvg, Xsvg } from "./_components/svg";
 const darkerGrotesque = Darker_Grotesque({
   variable: "--font-darker-grotesque",
   subsets: ["latin"],
@@ -30,7 +32,15 @@ export default function Home() {
           </button>
         </div>
         <img src={interfaceLogo.src} alt="interface" />
-        <button className="bg-[#3EC76A] text-black px-4 py-2 rounded-lg font-medium">
+        <button
+          className="bg-[#3EC76A] text-black px-4 py-2 rounded-lg font-medium cursor-pointer"
+          onClick={() => {
+            window.open(
+              "https://cal.com/rebhav-bharadwaj/introductory-chat",
+              "_blank"
+            );
+          }}
+        >
           Book a call
         </button>
       </div>
@@ -61,8 +71,16 @@ export default function Home() {
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col gap-1 items-center">
         <a className="text-[16px] text-neutral-600">Privacy Policy</a>
       </div>
-      <div className="absolute bottom-4 right-4 flex flex-col gap-1 items-center">
-        <a href=""></a>
+      <div className="absolute bottom-4 right-16 flex gap-2 items-center">
+        <a href="https://x.com/getinterface" target="_blank">
+          <Xsvg />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/interface-ai-labs/"
+          target="_blank"
+        >
+          <LinkedinSvg />
+        </a>
       </div>
     </div>
   );
