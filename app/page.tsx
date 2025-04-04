@@ -2,10 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Darker_Grotesque } from "next/font/google";
 import background from "../public/background.svg";
-import Invoice from "./_components/invoice";
-import Proposal from "./_components/proposal";
-import GoodsReport from "./_components/goods-report";
-import interfaceLogo from "../public/interface.png";
+import { Invoice, RfqSlip, Grn } from "./_components/svgs";
 import { SapLogo, AmazonLogo, UnfiLogo } from "./_components/amzon-logo";
 import { LinkedinSvg, Xsvg } from "./_components/svg";
 import { Logo } from "./_components/logo";
@@ -55,9 +52,9 @@ export default function Home() {
           Reimagining Services.
         </h3>
       </div>
+      <RfqSlip />
       <Invoice />
-      <Proposal />
-      <GoodsReport />
+      <Grn />
 
       <AmazonLogo />
       <SapLogo />
