@@ -8,6 +8,8 @@ import GoodsReport from "./_components/goods-report";
 import interfaceLogo from "../public/interface.png";
 import { SapLogo, AmazonLogo, UnfiLogo } from "./_components/amzon-logo";
 import { LinkedinSvg, Xsvg } from "./_components/svg";
+import { Logo } from "./_components/logo";
+
 const darkerGrotesque = Darker_Grotesque({
   variable: "--font-darker-grotesque",
   subsets: ["latin"],
@@ -24,14 +26,16 @@ export default function Home() {
     >
       <div className="absolute top-6 w-[69%] left-1/2 -translate-x-1/2 rounded-lg flex items-center justify-between bg-black z-50 px-4 py-4">
         <div className="flex items-center gap-2">
-          <button className="bg-white text-black px-4 py-2 rounded-lg font-medium">
+          <button
+            onClick={() => {
+              window.open("https://beta.getinterface.tech/login", "_blank");
+            }}
+            className="bg-white cursor-pointer hover:bg-neutral-200 text-black px-4 py-2 rounded-lg font-medium transition-colors duration-300"
+          >
             Login
           </button>
-          <button className="text-white px-4 py-2 rounded-lg font-medium">
-            Join Us
-          </button>
         </div>
-        <img src={interfaceLogo.src} alt="interface" />
+        <Logo />
         <button
           className="bg-[#3EC76A] text-black px-4 py-2 rounded-lg font-medium cursor-pointer"
           onClick={() => {
@@ -41,7 +45,7 @@ export default function Home() {
             );
           }}
         >
-          Book a call
+          Get in touch
         </button>
       </div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-1 items-center z-50">
@@ -50,16 +54,6 @@ export default function Home() {
         >
           Reimagining Services.
         </h3>
-        <p className="text-[20px] font-bold text-neutral-400">
-          Lorem ipsum dolor sit amet
-          <small className="text-[#3EC76A] font-bold text-[20px]">
-            {" "}
-            consectetur
-          </small>
-        </p>
-        <p className="text-[20px] font-bold text-neutral-400">
-          Facilisi tellus massa phasellus lorem urna{" "}
-        </p>
       </div>
       <Invoice />
       <Proposal />
@@ -68,9 +62,17 @@ export default function Home() {
       <AmazonLogo />
       <SapLogo />
       <UnfiLogo />
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col gap-1 items-center">
-        <a className="text-[16px] text-neutral-600">Privacy Policy</a>
+      <div className="absolute bottom-4 w-full text-center">
+        <a
+          href="/privacy-policy.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-neutral-400 font-semibold hover:text-[#51eb82] text-sm transition-colors duration-300"
+        >
+          Privacy Policy
+        </a>
       </div>
+
       <div className="absolute bottom-4 right-16 flex gap-2 items-center">
         <a href="https://x.com/getinterface" target="_blank">
           <Xsvg />
