@@ -15,7 +15,7 @@ export const Logo = ({ className }: LogoProps) => {
     <h1
       className={cn(
         manrope.className,
-        "font-semibold text-[28px] text-[#3ec76a] flex justify-start items-center h-full",
+        "font-semibold text-[28px] text-white flex justify-start items-center h-full",
         className
       )}
     >

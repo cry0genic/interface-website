@@ -21,8 +21,8 @@ export default function Home() {
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute top-6 w-[69%] left-1/2 -translate-x-1/2 rounded-lg flex items-center justify-between bg-black z-50 px-4 py-4">
-        <div className="flex items-center gap-2">
+      <div className="absolute top-6 xl:w-[69%] w-[90%] left-1/2 -translate-x-1/2 rounded-lg flex items-center justify-between bg-black z-50 px-4 py-4">
+        <div className="items-center gap-2 hidden sm:flex">
           <button
             onClick={() => {
               window.open("https://beta.getinterface.tech/login", "_blank");
@@ -47,7 +47,7 @@ export default function Home() {
       </div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-1 items-center z-50">
         <h3
-          className={`${darkerGrotesque.className} text-[68px] font-bold whitespace-nowrap`}
+          className={`${darkerGrotesque.className} md:text-[68px] text-[10vw] font-bold whitespace-nowrap`}
         >
           Reimagining Services.
         </h3>
@@ -59,7 +59,7 @@ export default function Home() {
       <AmazonLogo />
       <SapLogo />
       <UnfiLogo />
-      <div className="absolute bottom-4 w-full text-center">
+      <div className="absolute bottom-4 w-full text-center hidden sm:block">
         <a
           href="/privacy-policy.pdf"
           target="_blank"
@@ -70,7 +70,7 @@ export default function Home() {
         </a>
       </div>
 
-      <div className="absolute bottom-4 right-16 flex gap-2 items-center">
+      <div className="absolute md:bottom-4 sm:right-16 bottom-4 right-[50%] translate-x-1/2 sm:translate-x-0 flex gap-2 items-center">
         <a href="https://x.com/getinterface" target="_blank">
           <Xsvg />
         </a>
