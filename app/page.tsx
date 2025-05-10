@@ -67,6 +67,7 @@ export default function Home() {
           <div
             className="absolute bottom-4 right-1/2 translate-x-1/2"
             ref={sapRef}
+            style={{ zIndex: 2 }}
           >
             <img
               src={
@@ -93,9 +94,9 @@ export default function Home() {
         />
       </main>
       {/* Path */}
-      <SvgPath path={pathPurchaseOrder} />
-      <SvgPath path={pathInvoice} />
-      <SvgPath path={pathSap} />
+      <SvgPath path={pathPurchaseOrder} hovered={hovered} />
+      <SvgPath path={pathInvoice} hovered={hovered} />
+      <SvgPath path={pathSap} hovered={hovered} />
     </div>
   );
 }
