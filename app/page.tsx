@@ -1,20 +1,32 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
-import { Darker_Grotesque } from "next/font/google";
-import { RfqSlip } from "./_components/svgs";
-import { Invoice } from "./_components/svgs";
-import { Grn } from "./_components/svgs";
-import { SapLogo, UnfiLogo } from "./_components/amzon-logo";
-import { AmazonLogo } from "./_components/amzon-logo";
 import CentrePiece from "./_components/centre-piece";
-
-const darkerGrotesque = Darker_Grotesque({
-  variable: "--font-darker-grotesque",
-  subsets: ["latin"],
-});
+import { useRef, useState } from "react";
+import { useConnectionPath } from "./_hooks/useConnectionPath";
+import PurchaseOrder from "./_components/icons/purchase-order";
+import Invoice from "./_components/icons/invoice";
+import { SvgPath } from "./_components/svg-path";
 export default function Home() {
+  const centrePieceRef = useRef<HTMLDivElement>(null);
+  const purchaseOrderRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const invoiceRef = useRef<HTMLDivElement>(null);
+  const sapRef = useRef<HTMLDivElement>(null);
+  const pathPurchaseOrder = useConnectionPath(
+    containerRef,
+    centrePieceRef,
+    purchaseOrderRef
+  );
+  const pathInvoice = useConnectionPath(
+    containerRef,
+    centrePieceRef,
+    invoiceRef
+  );
+  const pathSap = useConnectionPath(containerRef, centrePieceRef, sapRef);
+  const [hovered, setHovered] = useState(false);
   return (
     <div
+      ref={containerRef}
       className="w-screen h-screen absolute p-6 pb-20 overflow-hidden"
       style={{
         backgroundImage:
@@ -37,11 +49,35 @@ export default function Home() {
             opacity: 0.4,
           }}
         />
-        <div className=" flex items-center justify-center">
+        <div className="flex items-center justify-center w-full h-full relative">
           <div className="w-[min(480px,90vw)] h-[min(432px,81vw)] border border-neutral-600/10">
-            <CentrePiece />
+            <CentrePiece
+              centrePieceRef={centrePieceRef}
+              hovered={hovered}
+              setHovered={setHovered}
+            />
+          </div>
+
+          <div className="absolute top-4 left-4" ref={purchaseOrderRef}>
+            <PurchaseOrder />
+          </div>
+          <div className="absolute bottom-4 right-4" ref={invoiceRef}>
+            <Invoice />
+          </div>
+          <div
+            className="absolute bottom-4 right-1/2 translate-x-1/2"
+            ref={sapRef}
+          >
+            <img
+              src={
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/910px-SAP_2011_logo.svg.png"
+              }
+              alt=""
+              className="w-[min(100px,10vw)]"
+            />
           </div>
         </div>
+
         <div
           className="border-l border-neutral-600/10"
           style={{
@@ -56,6 +92,10 @@ export default function Home() {
           }}
         />
       </main>
+      {/* Path */}
+      <SvgPath path={pathPurchaseOrder} />
+      <SvgPath path={pathInvoice} />
+      <SvgPath path={pathSap} />
     </div>
   );
 }
