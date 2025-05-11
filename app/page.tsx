@@ -7,6 +7,12 @@ import PurchaseOrder from "./_components/icons/purchase-order";
 import Invoice from "./_components/icons/invoice";
 import { SvgPath } from "./_components/svg-path";
 import Deductions from "./_components/icons/deductions";
+
+const bgImage = `
+  radial-gradient(circle, #FBFCFC 2px, #F4F6F7 2px),
+  url('/bg.png')
+`;
+
 export default function Home() {
   const [hovered, setHovered] = useState(false);
 
@@ -79,10 +85,7 @@ export default function Home() {
       ref={containerRef}
       className="w-screen h-screen absolute p-6 pb-20 overflow-hidden"
       style={{
-        backgroundImage: `
-          radial-gradient(circle, #FBFCFC 2px, #F4F6F7 2px),
-          url('/bg.png')
-        `,
+        backgroundImage: bgImage,
         backgroundSize: "20px 20px, auto",
         backgroundRepeat: "repeat, no-repeat",
         backgroundPosition: "center, center",
