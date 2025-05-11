@@ -7,11 +7,7 @@ import PurchaseOrder from "./_components/icons/purchase-order";
 import Invoice from "./_components/icons/invoice";
 import { SvgPath } from "./_components/svg-path";
 import Deductions from "./_components/icons/deductions";
-
-const bgImage = `
-  radial-gradient(circle, #FBFCFC 2px, #F4F6F7 2px),
-  url('/bg.png')
-`;
+import Footer from "./_components/footer";
 
 export default function Home() {
   const [hovered, setHovered] = useState(false);
@@ -83,16 +79,14 @@ export default function Home() {
   return (
     <div
       ref={containerRef}
-      className="w-screen h-screen absolute p-6 pb-20 overflow-hidden"
+      className="w-screen h-screen flex flex-col px-6 pt-6 overflow-hidden"
       style={{
-        backgroundImage: bgImage,
-        backgroundSize: "20px 20px, auto",
-        backgroundRepeat: "repeat, no-repeat",
-        backgroundPosition: "center, center",
-        backgroundBlendMode: "overlay",
+        backgroundImage: `radial-gradient(circle, #FBFCFC 2px, #F4F6F7 2px)`,
+        backgroundRepeat: "repeat",
+        backgroundSize: "20px 20px",
       }}
     >
-      <main className="grid grid-cols-[min(80px,4vw)_1fr_min(80px,4vw)] h-full w-full border border-neutral-600/10">
+      <main className="flex-grow grid grid-cols-[min(80px,4vw)_1fr_min(80px,4vw)] h-full w-full border border-neutral-600/10">
         <div
           className="border-r border-neutral-600/20"
           style={{
@@ -162,6 +156,7 @@ export default function Home() {
           }}
         />
       </main>
+      <Footer className="flex-none" />
       {/* Path */}
       <SvgPath path={pathPurchaseOrder} hovered={hovered} />
       <SvgPath path={pathInvoice} hovered={hovered} />
