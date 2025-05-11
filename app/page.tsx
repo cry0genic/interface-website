@@ -59,7 +59,7 @@ export default function Home() {
     "bottom",
     "left",
     20,
-    20
+    -30
   );
   const pathAccenture = useConnectionPath(
     containerRef,
