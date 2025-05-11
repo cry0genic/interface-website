@@ -8,6 +8,7 @@ import Invoice from "./_components/icons/invoice";
 import { SvgPath } from "./_components/svg-path";
 import Deductions from "./_components/icons/deductions";
 import Footer from "./_components/footer";
+import Calender from "./_components/icons/calender";
 
 export default function Home() {
   const [hovered, setHovered] = useState(false);
@@ -119,7 +120,7 @@ export default function Home() {
             <Deductions />
           </div>
           <div className="absolute bottom-0 left-0 z-10" ref={promotionsRef}>
-            <Deductions />
+            <Calender />
           </div>
           <div className="absolute top-4 right-[30%] z-10" ref={sapRef}>
             <img src={"/svg/sp.svg"} alt="" className="w-[80px] h-auto" />
