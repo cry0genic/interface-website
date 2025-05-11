@@ -38,7 +38,7 @@ export default CentrePiece;
 
 const HumanLabour = () => {
   return (
-    <div className="relative h-[146px] w-[250px] overflow-hidden rounded-lg bg-background border border-blue-300/10">
+    <div className="relative h-[146px] w-[250px] overflow-hidden rounded-lg bg-background border border-blue-300/10 shadow-md">
       <FlickeringGrid
         className="absolute inset-0 z-0 size-full"
         squareSize={4}
@@ -50,7 +50,7 @@ const HumanLabour = () => {
         width={800}
       />
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col justify-center items-center gap-2">
-        <span className="flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#5B71EB]">
+        <span className="flex h-[32px] w-[32px] items-center justify-center rounded-full">
           <People className="text-white" />
         </span>
         <p className="text-lg">Human Labour</p>
@@ -60,7 +60,7 @@ const HumanLabour = () => {
 };
 const AiLabour = () => {
   return (
-    <div className="relative h-[146px] w-[250px] overflow-hidden rounded-lg bg-[#43484C] border border-blue-300/10">
+    <div className="relative h-[146px] w-[250px] overflow-hidden rounded-lg bg-[#43484C] border border-blue-300/10 shadow-md">
       <FlickeringGrid
         className="absolute inset-0 z-0 size-full"
         squareSize={4}
@@ -72,7 +72,7 @@ const AiLabour = () => {
         width={800}
       />
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col justify-center items-center gap-2">
-        <span className="flex h-[32px] w-[32px] items-center justify-center rounded-full bg-[#5B71EB]">
+        <span className="flex h-[32px] w-[32px] items-center justify-center rounded-full">
           <People className="text-white" />
         </span>
         <p className="text-lg text-white">AI Integrated</p>

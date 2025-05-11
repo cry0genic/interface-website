@@ -6,6 +6,7 @@ import { useConnectionPath } from "./_hooks/useConnectionPath";
 import PurchaseOrder from "./_components/icons/purchase-order";
 import Invoice from "./_components/icons/invoice";
 import { SvgPath } from "./_components/svg-path";
+import background from "@/public/image.png";
 export default function Home() {
   const centrePieceRef = useRef<HTMLDivElement>(null);
   const purchaseOrderRef = useRef<HTMLDivElement>(null);
@@ -15,27 +16,37 @@ export default function Home() {
   const pathPurchaseOrder = useConnectionPath(
     containerRef,
     centrePieceRef,
-    purchaseOrderRef
+    purchaseOrderRef,
+    "top"
   );
   const pathInvoice = useConnectionPath(
     containerRef,
     centrePieceRef,
-    invoiceRef
+    invoiceRef,
+    "right"
   );
-  const pathSap = useConnectionPath(containerRef, centrePieceRef, sapRef);
+  const pathSap = useConnectionPath(
+    containerRef,
+    centrePieceRef,
+    sapRef,
+    "bottom"
+  );
   const [hovered, setHovered] = useState(false);
   return (
     <div
       ref={containerRef}
       className="w-screen h-screen absolute p-6 pb-20 overflow-hidden"
       style={{
-        backgroundImage:
-          "radial-gradient(circle, #E6E6E6 1px, transparent 1px)",
-        backgroundSize: "20px 20px",
-        backgroundPosition: "center",
+        backgroundImage: `
+          radial-gradient(circle, #FBFCFC 2px, #F4F6F7 2px),
+          url(${background.src})
+        `,
+        backgroundSize: "20px 20px, cover",
+        backgroundPosition: "center, center",
+        backgroundBlendMode: "overlay",
       }}
     >
-      <main className="grid grid-cols-[min(100px,8vw)_1fr_min(100px,8vw)] h-full w-full border border-neutral-600/10">
+      <main className="grid grid-cols-[min(80px,4vw)_1fr_min(80px,4vw)] h-full w-full border border-neutral-600/10">
         <div
           className="border-r border-neutral-600/20"
           style={{
@@ -58,14 +69,14 @@ export default function Home() {
             />
           </div>
 
-          <div className="absolute top-4 left-4" ref={purchaseOrderRef}>
+          <div className="absolute top-4 left-4 z-10" ref={purchaseOrderRef}>
             <PurchaseOrder />
           </div>
-          <div className="absolute bottom-4 right-4" ref={invoiceRef}>
+          <div className="absolute bottom-4 right-4 z-10" ref={invoiceRef}>
             <Invoice />
           </div>
           <div
-            className="absolute bottom-4 right-1/2 translate-x-1/2"
+            className="absolute bottom-4 right-1/2 translate-x-1/2 h-[100px] w-[100px] bg-white rounded-lg border border-neutral-200 shadow-lg flex items-center justify-center"
             ref={sapRef}
             style={{ zIndex: 2 }}
           >
@@ -74,7 +85,7 @@ export default function Home() {
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/910px-SAP_2011_logo.svg.png"
               }
               alt=""
-              className="w-[min(100px,10vw)]"
+              className="w-[80px] h-auto"
             />
           </div>
         </div>

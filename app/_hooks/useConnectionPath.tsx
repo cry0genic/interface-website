@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 
+type Position = "top" | "right" | "bottom" | "left";
+
 export const useConnectionPath = (
   containerRef: React.RefObject<HTMLElement | null>,
   fromRef: React.RefObject<HTMLElement | null>,
   toRef: React.RefObject<HTMLElement | null>,
+  position: Position,
   offset: number = 20
 ) => {
   const [path, setPath] = useState("");
@@ -21,50 +24,50 @@ export const useConnectionPath = (
         const toX = toRect.left - containerRect.left;
         const toY = toRect.top - containerRect.top;
 
-        // Determine connection points based on relative positions
+        // Determine connection points based on position prop
         let startX, startY, endX, endY, midX, midY;
 
-        // Determine which side of from element to connect from
-        if (toX > fromX + fromRect.width) {
-          // To element is to the right
-          startX = fromX + fromRect.width;
-          startY = fromY + fromRect.height / 2;
-          endX = toX;
-          endY = toY + toRect.height / 2;
-          midX = startX + offset;
-          midY = startY;
-          const pathD = `M ${startX} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX} ${endY}`;
-          setPath(pathD);
-        } else if (toX + toRect.width < fromX) {
-          // To element is to the left
-          startX = fromX;
-          startY = fromY + fromRect.height / 2;
-          endX = toX + toRect.width;
-          endY = toY + toRect.height / 2;
-          midX = startX - offset;
-          midY = startY;
-          const pathD = `M ${startX} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX} ${endY}`;
-          setPath(pathD);
-        } else if (toY > fromY + fromRect.height) {
-          // To element is below
-          startX = fromX + fromRect.width / 2;
-          startY = fromY + fromRect.height;
-          endX = toX + toRect.width / 2;
-          endY = toY;
-          midX = startX;
-          midY = startY + offset;
-          const pathD = `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
-          setPath(pathD);
-        } else {
-          // To element is above
-          startX = fromX + fromRect.width / 2;
-          startY = fromY;
-          endX = toX + toRect.width / 2;
-          endY = toY + toRect.height;
-          midX = startX;
-          midY = startY - offset;
-          const pathD = `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
-          setPath(pathD);
+        switch (position) {
+          case "right":
+            startX = fromX + fromRect.width;
+            startY = fromY + fromRect.height / 2;
+            endX = toX;
+            endY = toY + toRect.height / 2;
+            midX = startX + offset;
+            midY = startY;
+            const pathDRight = `M ${startX} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX} ${endY}`;
+            setPath(pathDRight);
+            break;
+          case "left":
+            startX = fromX;
+            startY = fromY + fromRect.height / 2;
+            endX = toX + toRect.width;
+            endY = toY + toRect.height / 2;
+            midX = startX - offset;
+            midY = startY;
+            const pathDLeft = `M ${startX} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX} ${endY}`;
+            setPath(pathDLeft);
+            break;
+          case "bottom":
+            startX = fromX + fromRect.width / 2;
+            startY = fromY + fromRect.height;
+            endX = toX + toRect.width / 2;
+            endY = toY;
+            midX = startX;
+            midY = startY + offset;
+            const pathDBottom = `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
+            setPath(pathDBottom);
+            break;
+          case "top":
+            startX = fromX + fromRect.width / 2;
+            startY = fromY;
+            endX = toX + toRect.width / 2;
+            endY = toY + toRect.height;
+            midX = startX;
+            midY = startY - offset;
+            const pathDTop = `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
+            setPath(pathDTop);
+            break;
         }
       }
     };
@@ -79,7 +82,7 @@ export const useConnectionPath = (
     }
 
     return () => resizeObserver.disconnect();
-  }, [containerRef, fromRef, toRef, offset]);
+  }, [containerRef, fromRef, toRef, position, offset]);
 
   return path;
 };

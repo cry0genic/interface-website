@@ -17,7 +17,7 @@ export const SvgPath = ({
       <path
         d={path}
         stroke="rgb(100, 100, 100)"
-        strokeWidth="2"
+        strokeWidth="1"
         fill="none"
         strokeOpacity="0.4"
         strokeDasharray={hovered ? "none" : "5,5"}
@@ -28,7 +28,7 @@ export const SvgPath = ({
         <path
           d={path}
           stroke="#3b82f6"
-          strokeWidth="2"
+          strokeWidth="1"
           fill="none"
           strokeDasharray="100"
           className="animate-blue-dash"
