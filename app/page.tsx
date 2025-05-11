@@ -119,7 +119,7 @@ export default function Home() {
             <Deductions />
           </div>
           <div className="absolute bottom-0 left-0 z-10" ref={promotionsRef}>
-            <img src="/svg/cal.svg" alt="" />
+            <img src={"/svg/cal.svg"} alt="" />
           </div>
           <div className="absolute top-4 right-[30%] z-10" ref={sapRef}>
             <img src={"/svg/sp.svg"} alt="" className="w-[80px] h-auto" />
