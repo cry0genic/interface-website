@@ -6,8 +6,10 @@ export const useConnectionPath = (
   containerRef: React.RefObject<HTMLElement | null>,
   fromRef: React.RefObject<HTMLElement | null>,
   toRef: React.RefObject<HTMLElement | null>,
-  position: Position,
-  offset: number = 20
+  fromPosition: Position,
+  toPosition: Position,
+  fromOffset: number = 0,
+  toOffset: number = 0
 ) => {
   const [path, setPath] = useState("");
 
@@ -27,48 +29,55 @@ export const useConnectionPath = (
         // Determine connection points based on position prop
         let startX, startY, endX, endY, midX, midY;
 
-        switch (position) {
+        switch (fromPosition) {
           case "right":
             startX = fromX + fromRect.width;
-            startY = fromY + fromRect.height / 2;
-            endX = toX;
-            endY = toY + toRect.height / 2;
-            midX = startX + offset;
-            midY = startY;
-            const pathDRight = `M ${startX} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX} ${endY}`;
-            setPath(pathDRight);
+            startY = fromY + fromRect.height / 2 + fromOffset;
             break;
           case "left":
             startX = fromX;
-            startY = fromY + fromRect.height / 2;
-            endX = toX + toRect.width;
-            endY = toY + toRect.height / 2;
-            midX = startX - offset;
-            midY = startY;
-            const pathDLeft = `M ${startX} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX} ${endY}`;
-            setPath(pathDLeft);
+            startY = fromY + fromRect.height / 2 + fromOffset;
             break;
           case "bottom":
-            startX = fromX + fromRect.width / 2;
+            startX = fromX + fromRect.width / 2 + fromOffset;
             startY = fromY + fromRect.height;
-            endX = toX + toRect.width / 2;
-            endY = toY;
-            midX = startX;
-            midY = startY + offset;
-            const pathDBottom = `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
-            setPath(pathDBottom);
             break;
           case "top":
-            startX = fromX + fromRect.width / 2;
+            startX = fromX + fromRect.width / 2 + fromOffset;
             startY = fromY;
-            endX = toX + toRect.width / 2;
-            endY = toY + toRect.height;
-            midX = startX;
-            midY = startY - offset;
-            const pathDTop = `M ${startX} ${startY} L ${startX} ${midY} L ${endX} ${midY} L ${endX} ${endY}`;
-            setPath(pathDTop);
             break;
         }
+
+        switch (toPosition) {
+          case "right":
+            endX = toX;
+            endY = toY + toRect.height / 2 + toOffset;
+            break;
+          case "left":
+            endX = toX + toRect.width;
+            endY = toY + toRect.height / 2 + toOffset;
+            break;
+          case "bottom":
+            endX = toX + toRect.width / 2 + toOffset;
+            endY = toY;
+            break;
+          case "top":
+            endX = toX + toRect.width / 2 + toOffset;
+            endY = toY + toRect.height;
+            break;
+        }
+
+        // Calculate midpoint for 90-degree turn
+        if (fromPosition === "left" || fromPosition === "right") {
+          midX = endX;
+          midY = startY;
+        } else {
+          midX = startX;
+          midY = endY;
+        }
+
+        const pathD = `M ${startX} ${startY} L ${midX} ${midY} L ${endX} ${endY}`;
+        setPath(pathD);
       }
     };
 
@@ -82,7 +91,15 @@ export const useConnectionPath = (
     }
 
     return () => resizeObserver.disconnect();
-  }, [containerRef, fromRef, toRef, position, offset]);
+  }, [
+    containerRef,
+    fromRef,
+    toRef,
+    fromPosition,
+    toPosition,
+    fromOffset,
+    toOffset,
+  ]);
 
   return path;
 };

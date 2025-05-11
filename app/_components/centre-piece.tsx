@@ -38,7 +38,7 @@ export default CentrePiece;
 
 const HumanLabour = () => {
   return (
-    <div className="relative h-[146px] w-[250px] overflow-hidden rounded-lg bg-background border border-blue-300/10 shadow-md">
+    <div className="relative h-[146px] w-[250px] overflow-hidden rounded-lg bg-[#F8F9FA] border border-blue-300/10 shadow-md">
       <FlickeringGrid
         className="absolute inset-0 z-0 size-full"
         squareSize={4}

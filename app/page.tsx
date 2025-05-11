@@ -6,32 +6,74 @@ import { useConnectionPath } from "./_hooks/useConnectionPath";
 import PurchaseOrder from "./_components/icons/purchase-order";
 import Invoice from "./_components/icons/invoice";
 import { SvgPath } from "./_components/svg-path";
-import background from "@/public/image.png";
+import Deductions from "./_components/icons/deductions";
 export default function Home() {
+  const [hovered, setHovered] = useState(false);
+
   const centrePieceRef = useRef<HTMLDivElement>(null);
   const purchaseOrderRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const invoiceRef = useRef<HTMLDivElement>(null);
   const sapRef = useRef<HTMLDivElement>(null);
+  const deductionsRef = useRef<HTMLDivElement>(null);
+  const promotionsRef = useRef<HTMLDivElement>(null);
+  const accentureRef = useRef<HTMLDivElement>(null);
+  const deolliteRef = useRef<HTMLDivElement>(null);
   const pathPurchaseOrder = useConnectionPath(
     containerRef,
     centrePieceRef,
     purchaseOrderRef,
-    "top"
+    "top",
+    "right",
+    -40,
+    30
   );
   const pathInvoice = useConnectionPath(
     containerRef,
     centrePieceRef,
     invoiceRef,
-    "right"
+    "right",
+    "bottom"
   );
   const pathSap = useConnectionPath(
     containerRef,
     centrePieceRef,
     sapRef,
-    "bottom"
+    "top",
+    "right",
+    -20
   );
-  const [hovered, setHovered] = useState(false);
+  const pathDeductions = useConnectionPath(
+    containerRef,
+    centrePieceRef,
+    deductionsRef,
+    "top",
+    "right"
+  );
+  const pathPromotions = useConnectionPath(
+    containerRef,
+    centrePieceRef,
+    promotionsRef,
+    "bottom",
+    "left",
+    20,
+    20
+  );
+  const pathAccenture = useConnectionPath(
+    containerRef,
+    centrePieceRef,
+    accentureRef,
+    "left",
+    "right"
+  );
+  const pathDeollite = useConnectionPath(
+    containerRef,
+    centrePieceRef,
+    deolliteRef,
+    "bottom",
+    "bottom",
+    0
+  );
   return (
     <div
       ref={containerRef}
@@ -39,9 +81,10 @@ export default function Home() {
       style={{
         backgroundImage: `
           radial-gradient(circle, #FBFCFC 2px, #F4F6F7 2px),
-          url(${background.src})
+          url('/bg.png')
         `,
-        backgroundSize: "20px 20px, cover",
+        backgroundSize: "20px 20px, auto",
+        backgroundRepeat: "repeat, no-repeat",
         backgroundPosition: "center, center",
         backgroundBlendMode: "overlay",
       }}
@@ -75,18 +118,30 @@ export default function Home() {
           <div className="absolute bottom-4 right-4 z-10" ref={invoiceRef}>
             <Invoice />
           </div>
+          <div className="absolute top-4 right-0 z-10" ref={deductionsRef}>
+            <Deductions />
+          </div>
+          <div className="absolute bottom-0 left-0 z-10" ref={promotionsRef}>
+            <img src="/svg/cal.svg" alt="" />
+          </div>
+          <div className="absolute top-4 right-[30%] z-10" ref={sapRef}>
+            <img src={"/svg/sp.svg"} alt="" className="w-[80px] h-auto" />
+          </div>
           <div
-            className="absolute bottom-4 right-1/2 translate-x-1/2 h-[100px] w-[100px] bg-white rounded-lg border border-neutral-200 shadow-lg flex items-center justify-center"
-            ref={sapRef}
-            style={{ zIndex: 2 }}
+            className="absolute top-1/2 -translate-y-1/2 left-[10%] z-10"
+            ref={accentureRef}
           >
             <img
-              src={
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/SAP_2011_logo.svg/910px-SAP_2011_logo.svg.png"
-              }
+              src={"/svg/accenture.svg"}
               alt=""
               className="w-[80px] h-auto"
             />
+          </div>
+          <div
+            className="absolute bottom-4 right-1/2 translate-x-1/2 z-10"
+            ref={deolliteRef}
+          >
+            <img src={"/svg/deolite.svg"} alt="" className="w-[80px] h-auto" />
           </div>
         </div>
 
@@ -108,6 +163,10 @@ export default function Home() {
       <SvgPath path={pathPurchaseOrder} hovered={hovered} />
       <SvgPath path={pathInvoice} hovered={hovered} />
       <SvgPath path={pathSap} hovered={hovered} />
+      <SvgPath path={pathDeductions} hovered={hovered} />
+      <SvgPath path={pathPromotions} hovered={hovered} />
+      <SvgPath path={pathAccenture} hovered={hovered} />
+      <SvgPath path={pathDeollite} hovered={hovered} />
     </div>
   );
 }
