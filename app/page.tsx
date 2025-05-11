@@ -57,9 +57,9 @@ export default function Home() {
     centrePieceRef,
     promotionsRef,
     "bottom",
-    "left",
+    "right",
     20,
-    -30
+    -60
   );
   const pathAccenture = useConnectionPath(
     containerRef,
